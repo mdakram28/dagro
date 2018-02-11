@@ -1,4 +1,12 @@
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 import "../stylesheets/app.css";
+import "../stylesheets/main.css";
+import "./functions-min.js";
+import "./functions.js";
+import "./vendor/hammer-2.0.8.js";
+import "./vendor/jquery-2.2.4.min.js";
 
 import { default as Web3 } from 'web3';
 import Community from './community.js';
