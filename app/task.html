@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="task">
 
   <head>
 
@@ -18,7 +18,7 @@
 
   </head>
 
-  <body>
+  <body ng-controller="TaskCtrl">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -30,14 +30,39 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Admin</a>
+              <a class="nav-link" onclick="myfunction1()" href="#">Admin</a>
+              <script>
+              function myfunction1()
+              {
+                document.getElementById('a1').style.visibility="hidden";
+                document.getElementById('leave').style.visibility="hidden"
+                document.getElementById('v1').style.visibility="visible"
+              }
+          </script>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Manager</a>
+              <a class="nav-link" onclick="myfunction2()" href="#">Manager</a>
+              <script>
+                function myfunction2()
+                {
+                  document.getElementById('a1').style.visibility="hidden";
+                  document.getElementById('v1').style.visibility="hidden";
+                  document.getElementById('leave').style.visibility="visible"
+
+                }
+              </script>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Labourers</a>
+              <a class="nav-link" onclick="myfunction3()" href="#">Labourers</a>
+              <script>
+                function myfunction3()
+                {
+                  document.getElementById('v1').style.visibility="hidden"
+                  document.getElementById('leave').style.visibility="hidden"
+                  document.getElementById('a1').style.visibility="visible"
+                }
+              </script>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Shareholders</a>
@@ -70,8 +95,8 @@
             <div class="card-body">
               <h3 class="card-title">Task 1 Value </h3>
               <h4>2.49</h4>
-              <button type="button" class="btn btn-primary">Accept</button>
-              <button type="button" class="btn btn-primary">Verify</button>
+              <button type="button" id='a1' class="btn btn-primary">Accept</button>
+              <button type="button" id='v1' class="btn btn-primary">Verify</button>
               <h3 class="card-title">Task 2 value</h3>
               <h4>3.49</h4>
               <button type="button" class="btn btn-primary">Accept</button>
@@ -99,7 +124,7 @@
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
               <small class="text-muted">Posted by Manager3 on 3/1/17</small>
               <hr>
-              <a href="#" class="btn btn-success">Put a task </a>
+              <a href="#" id='leave' class="btn btn-success">Put a task </a>
             </div>
           </div>
           <!-- /.card -->
