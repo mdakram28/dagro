@@ -1,0 +1,94 @@
+<div class="row">
+
+
+	<div class="table-responsive col-sm-12">
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Total Shares Sold : {{(_.community.info.totalShares - _.community.info.unownedShares)}} / {{_.community.info.totalShares}}</th>
+					<td>
+						<div class="progress">
+							<div class="progress-bar" style="width:{{_.percentShares}}%">{{_.percentShares}}%</div>
+						</div>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Total Shares Owned : {{_.community.myInfo.sharesOwned}} / {{_.community.info.totalShares}}</th>
+					<td>
+						<div class="progress">
+							<div class="progress-bar bg-success" style="width:{{_.percentSharesOwned}}%">{{_.percentSharesOwned}}%</div>
+						</div>
+					</td>
+					<td></td>
+				</tr>
+
+
+
+				<tr>
+					<th>Share Value</th>
+					<td>{{_.community.formatAmount(_.shareValue)}}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Total Community Value</th>
+					<td>{{_.community.formatAmount(_.community.valuation())}}</td>
+					<td></td>
+				</tr>
+				<tr>
+						<th>Total Balance</th>
+						<td>{{_.community.formatAmount(_.myBalance)}}</td>
+						<td></td>
+					</tr>
+				<tr>
+					<th>My Pending Buy Request</th>
+					<td>{{_.community.myInfo.pendingBuy}}</td>
+					<td>
+						<button type="button" ng-click="_.clearPendingBuys()" class="btn btn-default">Clear</button>
+					</td>
+				</tr>
+				<tr>
+					<th>Buy Shares</th>
+					<td>
+						<div class="input-group">
+							<input type="number" class="form-control" placeholder="Shares" ng-model="_.buySharesCount">
+							<button class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="_.buyShares()">Buy</button>
+							</button>
+						</div>
+					</td>
+					<td style="width: 150px">
+						Value: {{_.community.formatAmount(_.buySharesCount * _.shareValue)}}
+					</td>
+				</tr>
+
+
+				<tr>
+					<th>Sell Shares</th>
+					<td>
+						<div class="input-group">
+							<input type="number" class="form-control" placeholder="Shares" ng-model="_.sellSharesCount">
+							<button class="input-group-btn" ng-click="_.sellShares()">
+								<button type="button" class="btn btn-default">Sell</button>
+							</button>
+						</div>
+					</td>
+					<td style="width: 150px">
+						Value: {{_.community.formatAmount(_.sellSharesCount * _.shareValue)}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+</div>
+
+<div class="row">
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		${require("./sharestable.html")}
+	</div>
+
+</div>

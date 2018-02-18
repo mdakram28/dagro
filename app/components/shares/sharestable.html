@@ -1,0 +1,25 @@
+
+<div class="table-responsive">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Count</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="member in _.pendingBuys">
+				<td>{{member.name}}</td>
+				<td>{{member.address}}</td>
+				<td>{{member.pendingBuy}}</td>
+				<td>
+					<button type="button" ng-click="_.sellShares(member)" class="btn btn-succes" ng-if="member.address != _.community.myInfo.address">
+						Sell
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

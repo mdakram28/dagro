@@ -2,10 +2,12 @@
   "name": "truffle-init-webpack",
   "version": "0.0.2",
   "description": "Frontend example using truffle v3",
+  "browser": "browser.js",
   "scripts": {
     "lint": "eslint ./",
     "build": "webpack",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "postinstall": "mkdir ./node_modules/dapp-styles/dist/dapp-styles; cp ./node_modules/dapp-styles/hex-grid-tile.png ./node_modules/dapp-styles/dist/dapp-styles/hex-grid-tile.png"
   },
   "author": "Douglas von Kohorn",
   "license": "MIT",
@@ -30,15 +32,23 @@
     "json-loader": "^0.5.4",
     "style-loader": "^0.13.1",
     "truffle-contract": "^1.1.11",
-    "web3": "^0.20.0",
+    "web3": "0.20.0",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
   },
   "dependencies": {
     "angular": "^1.6.9",
     "angular-ui": "^1.0.0",
+    "angular-ui-router": "^1.0.3",
+    "bignumber": "^1.1.0",
+    "bignumber.js": "^6.0.0",
     "bootstrap": "^4.0.0",
+    "dapp-styles": "^0.2.2",
     "file-loader": "^1.1.6",
+    "font-awesome": "^4.7.0",
+    "html-loader": "^0.5.5",
+    "identicon": "^2.1.1",
+    "identicon.js": "^2.3.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",
     "url-loader": "^0.6.2"

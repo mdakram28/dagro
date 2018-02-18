@@ -6,10 +6,29 @@
 
 body {
   padding-top: 54px;
+  width: 100vw;
 }
 
 @media (min-width: 992px) {
   body {
     padding-top: 56px;
   }
+}
+
+
+input[type="text"], input[type="number"] {
+	margin-top: 0px;
+}
+
+#main {
+	min-height: 80vh
+}
+
+.table > tbody > tr > td {
+	vertical-align: middle;
+}
+
+.img-circle {
+	border-radius: 100%;
+	border: 2px solid #aaa;
 }

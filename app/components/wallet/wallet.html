@@ -1,0 +1,57 @@
+<div class="row">
+
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+	</div>
+
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+		<div class="table-responsive">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Balance</th>
+						<td>{{_.community.formatAmount(_.balance)}}</td>
+					</tr>
+					<tr>
+						<th>Wallet Balance</th>
+						<td>{{_.community.formatAmount(_.community.myInfo.deposit)}}</td>
+					</tr>
+					<tr>
+						<td>
+							<button type="button" ng-click="_.deposit()" class="btn btn-primary col-sm-11">
+								Deposit
+							</button>
+						</td>
+						<td>
+							<input type="number" name="deposit" ng-model="_.depositAmount" class="form-control" required>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<button type="button" ng-click="_.withdraw()" class="btn btn-primary col-sm-11">
+								Withdraw
+							</button>
+						</td>
+						<td>
+							<input type="number" name="withdraw" ng-model="_.withdrawAmount" class="form-control" required>
+						</td>
+					</tr>
+
+
+					<tr>
+						<td>
+							<button type="button" ng-click="_.withdrawAll()" class="btn btn-primary col-sm-11">
+								Withdraw All
+							</button>
+						</td>
+						<td>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>

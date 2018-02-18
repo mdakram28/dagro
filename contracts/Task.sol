@@ -34,7 +34,7 @@ contract Task {
         _;
     }
     
-    function Task(Community _c, string _name, string _description) public payable {
+    function Task(Community _c, string _name, string _description) public {
         c = _c;
         owner = msg.sender;
         createdAt = now;

@@ -28,7 +28,7 @@ contract Community {
     address[] public membersList;
     uint public membersCount;
     
-    Task[] public tasksList;
+    address[] public tasksList;
     uint public tasksCount;
     
     //modifiers
@@ -85,7 +85,7 @@ contract Community {
         members[member].verified = true;
     }
     
-    function myInfo() public onlyMember constant returns (address,string,uint,uint,bool,uint256,uint) {
+    function myInfo() public constant returns (address,string,uint,uint,bool,uint256,uint) {
         return (
             members[msg.sender].addr,
             members[msg.sender].name,
@@ -176,8 +176,12 @@ contract Community {
     }
     
     function newTask(string name, string description, uint256 reward) public onlyOwner {
-        require(valuation() > reward/10);
-        tasksList.push(new Task(this, name, description));
-        tasksList[tasksCount++].transfer(reward);
+        // require((valuation()/10) > reward);
+		address task = new Task(this, name, description);
+        tasksList.push(task);
+		tasksCount++;
+        if(!task.send(reward)){
+			throw;
+		}
     }
 }
