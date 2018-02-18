@@ -1,0 +1,35 @@
+<div class="table-responsive">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th></th>
+				<th>Task Name</th>
+				<th>Task Description</th>
+				<th>Task Value</th>
+				<th>Status</th>
+				<th>Verified</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="task in _.community.tasks">
+				<td>{{$index}}</td>
+				<td>
+					<img class="img-circle" ng-src="data:image/JPEG;base64,{{task.identicon}}">
+				</td>
+				<td>{{task.info.name}}</td>
+                <td>{{task.info.description}}</td>
+				<td>{{task.info.value}}</td>
+				<td>{{task.info.status}}</td>
+				<td ng-if="task.info.status == 'CREATED'">
+					<button type="button" class="btn btn-success" ng-click="_.task.addVolunteer()">
+						Apply
+					</button>
+				</td>
+				
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

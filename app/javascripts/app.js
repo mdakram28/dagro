@@ -39,7 +39,7 @@ $(function() {
 	// web3.personal.unlockAccount(web3.eth.accounts[2], "");
 	// web3.personal.unlockAccount(web3.eth.accounts[3], "");
 	// if localstorage does not have an address
-	web3.eth.defaultAccount = web3.eth.accounts[1];
+	web3.eth.defaultAccount = web3.eth.accounts[0];
 	window.account = web3.eth.defaultAccount;
 
 	Community.injectProvider(web3);

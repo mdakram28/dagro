@@ -2,12 +2,10 @@
 
 	<div class="col-lg-3">
 
-		<h1 class="my-4">Task name</h1>
+		<h1 class="my-4">Task Dashboard</h1>
 		<a href="#" class="btn btn-primary col-sm-12" style="color: white" data-toggle="modal" data-target="#TaskModal" >Post a task </a>
 		<hr/>
-		<div class="list-group">
-			<a href="#" class="list-group-item">Task 1</a>
-		</div>
+		
 	</div>
 	<!-- /.col-lg-3 -->
 
@@ -16,10 +14,7 @@
 		<div class="card mt-4">
 			<div class="card-img-top img-fluid" style="display: block; height: 200px; background-image: url('/img/helloagro.jpg'); background-size: cover;" alt="Agriculture"></div>
 			<div class="card-body">
-				<h3 class="card-title">Task 1 Value </h3>
-				<h4>2.49</h4>
-				<button type="button" id='a1' class="btn btn-primary">Accept</button>
-				<button type="button" id='v1' class="btn btn-primary" ng-click="verifyTask()">Verify</button>
+				
 			</div>
 		</div>
 		<!-- /.card -->
@@ -30,18 +25,7 @@
 				Task Details
 			</div>
 			<div class="card-body">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque
-					non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-				<small class="text-muted">Posted by Manager1 on 3/1/17</small>
-				<hr>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque
-					non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-				<small class="text-muted">Posted by Manager2 on 3/1/17</small>
-				<hr>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque
-					non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-				<small class="text-muted">Posted by Manager3 on 3/1/17</small>
-				<hr>
+				${require('./task_table.html')}
 			</div>
 		</div>
 		<!-- /.card -->

@@ -1,4 +1,6 @@
 import contract from 'truffle-contract';
+import Identicon from 'identicon.js';
+
 
 import task_artifacts from '../../build/contracts/Task.json';
 const TaskContract = contract(task_artifacts);
@@ -29,6 +31,8 @@ class Task {
 		this.verifyTask = this.verifyTask.bind(this);
 
 		this.contract = TaskContract.at(address);
+		this.identicon = new Identicon(this.address, 30).toString();
+
 
 		this.refreshTaskInfo();
 		this.refreshVolunteers();
@@ -45,7 +49,8 @@ class Task {
 					name: res[2],
 					description: res[3],
 					status: TaskStatus[res[4].toFixed()],
-					assignedVolunteer: res[5]
+					assignedVolunteer: res[5],
+					value: web3.eth.getBalance(_this.address)
 				};
 			})
 	}
