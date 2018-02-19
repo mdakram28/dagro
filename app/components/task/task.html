@@ -5,6 +5,8 @@
 		<h1 class="my-4">Task Dashboard</h1>
 		<a href="#" class="btn btn-primary col-sm-12" style="color: white" data-toggle="modal" data-target="#TaskModal" >Post a task </a>
 		<hr/>
+
+		<a class="btn btn-primary col-sm-12" style="color: white" ng-repeat="task in _.community.tasks" ng-click="_.openTask(task)">{{task.info.name}} </a>
 		
 	</div>
 	<!-- /.col-lg-3 -->
@@ -25,6 +27,9 @@
 				Task Details
 			</div>
 			<div class="card-body">
+				<button class="btn btn-primary" ng-click="_.addVolunteer(_.task)">
+					Volunteer for task
+				</button>
 				${require('./task_table.html')}
 			</div>
 		</div>

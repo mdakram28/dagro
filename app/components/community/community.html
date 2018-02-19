@@ -52,6 +52,43 @@
 					<button type="submit" class="btn btn-success">
 						Join!
 					</button>
+					<br>
+					<br>
+					<br>
+					<ul class="dapp-account-list">
+						<!-- Clickable accounts use <button> -->
+						<li>
+							<button>
+								<a class="dapp-identicon dapp-small" style="background-image: url(identiconimage.png)"></a>
+								<h3>Account1</h3>
+								<span>0x343c98e2b6e49bc0fed722c2a269f3814ddd1533</span>
+							</button>         
+						</li>
+						<li>
+							<button>
+								<a class="dapp-identicon dapp-small" style="background-image: url(identiconimage.png)"></a>
+								<h3>Account2</h3>
+								<span>0x343c98e2b6e49bc0fed722c2a269f3814ddd1533</span>
+			
+							</button>         
+						</li>
+						<!-- Unclickable accounts -->
+						<li>
+							<button>
+							<a class="dapp-identicon dapp-small" style="background-image: url(identiconimage.png)"></a>
+							<h3>Account3</h3>
+							<span>0x343c98e2b6e49bc0fed722c2a269f3814ddd1533</span>
+						</button>
+						</li>
+						<li>
+							<button>
+							<a class="dapp-identicon dapp-small" style="background-image: url(identiconimage.png)"></a>
+							<h3>Account4</h3>
+							<span>0x343c98e2b6e49bc0fed722c2a269f3814ddd1533</span>
+						
+						</button>
+						</li>
+					</ul>
 				</form>
 			</div>
 
@@ -84,6 +121,16 @@
 							<tr>
 								<th>Community Name</th>
 								<td>{{_.community.info.communityName}}</td>
+							</tr>
+
+							<tr>
+								<th>Community Address</th>
+								<td>{{_.community.address}}</td>
+							</tr>
+
+							<tr>
+								<th>Community Balance</th>
+								<td>{{_.communityBalance}}</td>
 							</tr>
 
 							<tr>

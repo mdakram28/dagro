@@ -6,7 +6,7 @@ import task_artifacts from '../../build/contracts/Task.json';
 const TaskContract = contract(task_artifacts);
 window.TaskContract = TaskContract;
 
-const TaskStatus = ["CREATED","ASSIGNED","COMPLETED","VERIFIED","CANCELED"];
+const TaskStatus = ["CREATED", "ASSIGNED", "COMPLETED", "VERIFIED", "CANCELED"];
 class Task {
 
 
@@ -29,19 +29,22 @@ class Task {
 		this.completedTask = this.completedTask.bind(this);
 		this.cancelTask = this.cancelTask.bind(this);
 		this.verifyTask = this.verifyTask.bind(this);
+		this.refreshAll = this.refreshAll.bind(this);
 
 		this.contract = TaskContract.at(address);
 		this.identicon = new Identicon(this.address, 30).toString();
+	}
 
-
-		this.refreshTaskInfo();
-		this.refreshVolunteers();
+	refreshAll() {
+		return this.refreshTaskInfo()
+			.then(this.refreshVolunteers)
+			.then(()=> this);
 	}
 
 
 	refreshTaskInfo() {
 		const _this = this;
-		_this.contract.taskInfo()
+		return _this.contract.taskInfo()
 			.then(res => {
 				_this.info = {
 					owner: res[0],
@@ -62,7 +65,7 @@ class Task {
 				const count = res.toFixed();
 				let promises = [];
 				for (let i = 0; i < count; i++) {
-					promises.push(_this.contract.volunteers(i).then(c.getMemberByAddress));
+					promises.push(_this.contract.volunteers(i).then(Community.community.getMemberByAddress));
 				}
 				return Promise.all(promises);
 			})
@@ -72,9 +75,11 @@ class Task {
 	}
 
 	addVolunteer() {
+		showLoader("Adding Volunteer");
 		const _this = this;
 		return _this.contract.addVolunteer()
-			.then(_this.refreshVolunteers);
+			.then(_this.refreshVolunteers)
+			.then(hideLoader);
 	}
 
 	// TODO : Implement all solidity functions

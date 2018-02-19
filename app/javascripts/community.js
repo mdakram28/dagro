@@ -217,7 +217,7 @@ class Community {
 						.then((taskAddress) => {
 							console.log(taskAddress);
 							const task = new Task(taskAddress);
-							return task;
+							return task.refreshAll();
 						}));
 				}
 				return Promise.all(promises);
@@ -319,8 +319,8 @@ class Community {
 Community.loaded = false;
 Community.toExec = [];
 
-Community.afterLoad((community) => {
-});
+// Community.afterLoad((community) => {
+// });
 
 window.Community = Community;
 

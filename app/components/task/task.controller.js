@@ -14,8 +14,9 @@ export default class TaskController {
 
 		Community.afterLoad(community => {
 			this.community = community;
-			// this.refresh();
+			this.task = this.community.tasks[0];
 			this.scope.$apply();
+			console.log("Community updated");
 		});
 	}
 
@@ -25,18 +26,20 @@ export default class TaskController {
 
 	postNewTask() {
 		$("#TaskModal").modal("hide");
+		console.log(this.newTask);
 		this.community.createTask(this.newTask.name, this.newTask.description, this.newTask.value);
-
-
 	}
 
-	verifyNewTask(taskchild)
-	{
+	verifyNewTask(taskchild) {
 		taskchild.verify().then(this.task.refreshTaskInfo).then(this.scope.$apply);
 	}
 
-	acceptNewTask()
-	{
-		
+	addVolunteer(task) {
+		task.addVolunteer().then(this.scope.$apply);
+	}
+
+	openTask(task) {
+		console.log(task.volunteers);
+		this.task = task;
 	}
 }

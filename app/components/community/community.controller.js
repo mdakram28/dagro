@@ -17,6 +17,7 @@ export default class {
 		Community.afterLoad( community => {
 			window.community = community;
 			this.community = community;
+			this.communityBalance = this.community.formatAmount(web3.eth.getBalance(this.community.address));
 			return community.joinCommunity().then(() => this.scope.$apply());
 		});
 	}
