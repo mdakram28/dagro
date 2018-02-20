@@ -5,11 +5,21 @@
 		<h1 class="my-4">Task Dashboard</h1>
 		<a href="#" class="btn btn-primary col-sm-12" style="color: white" data-toggle="modal" data-target="#TaskModal" >Post a task </a>
 		<hr/>
-
-		<a class="btn btn-primary col-sm-12" style="color: white" ng-repeat="task in _.community.tasks" ng-click="_.openTask(task)">{{task.info.name}} </a>
 		
 	</div>
-	<!-- /.col-lg-3 -->
+	<!-- Page Content -->
+    <div class="container">
+
+		<div class="row">
+  
+		  <div class="col-lg-3">
+			<h1 class="my-4">Task name</h1>
+			<div class="list-group">
+			  <a href="#" class="btn btn-primary" ng-repeat="task in _.community.tasks" ng-click="_.openTask(task)">{{task.info.name}}</a>
+			 
+			</div>
+		  </div>
+		
 
 	<div class="col-lg-9">
 
@@ -22,11 +32,13 @@
 		<!-- /.card -->
 
 
-		<div class="card card-outline-secondary my-4">
+		<div class="card card-outline-secondary my-4" id="tasktable">
 			<div class="card-header">
 				Task Details
 			</div>
 			<div class="card-body">
+				<p>{{tasks.info.description}}</p>
+				<p>{{tasks.info.value}}</p>
 				<button class="btn btn-primary" ng-click="_.addVolunteer(_.task)">
 					Volunteer for task
 				</button>

@@ -39,7 +39,8 @@ export default class TaskController {
 	}
 
 	openTask(task) {
-		console.log(task.volunteers);
+		
 		this.task = task;
+		this.scope.$apply();
 	}
 }
