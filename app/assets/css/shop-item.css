@@ -32,3 +32,34 @@ input[type="text"], input[type="number"] {
 	border-radius: 100%;
 	border: 2px solid #aaa;
 }
+
+.accounts-table td {
+	font-family: "monospace", Times, serif;
+	padding: 6px;
+	font-size: 12px;
+}
+
+.accounts-table tr {
+	cursor: pointer;
+	border-bottom: 1px solid #CFD8DC;
+}
+
+.accounts-table tr:hover {
+	background-color: #D7CCC8;
+}
+
+.accounts-table img {
+	width: 40px;
+	height: 40px;
+	border: 1px solid gray;
+
+	border-radius: 50%;
+	border-width: 3px;
+	border-style: double;
+	border-color: #90A4AE;
+}
+
+.accounts-table figure {
+	font-size: 25px;
+	color: #009688;
+}

@@ -5,8 +5,7 @@
 				<th>#</th>
 				<th></th>
 				<th>Volunteer</th>
-				<th>Assign</th>
-				<th>Verify</th>
+				<th ng-if="_.community.isOwner()">Assign</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -16,20 +15,14 @@
 					<img class="img-circle" ng-src="data:image/JPEG;base64,{{member.identicon}}">
 				</td>
 				<td>{{member.address}}</td>
-				<td ng-if="task.info.status == 'CREATED'">
-					<button type="button" class="btn btn-success" ng-click="_.assignTask(_.task,member)">
+				<td ng-if="_.community.isOwner()" align="center">
+					<button type="button" class="btn btn-success" ng-click="_.assignTask(_.task,member)" ng-if="_.task.info.status == 'CREATED'">
 						Assign
 					</button>
+					<i class="far fa-check-circle" ng-if="member.address == _.task.info.assignedVolunteer" style="font-size: 30px; color: #00695C"></i>
 				</td>
-				<td ng-if="task.info.status == 'ASSIGNED'">
-					<button type="button" class="btn btn-success" ng-click="_.completedTask(_.task)">
-					Verify
-					</button>
-				</td>
-				
-	
 			</tr>
-			
+
 		</tbody>
 	</table>
 </div>

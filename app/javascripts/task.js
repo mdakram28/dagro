@@ -75,17 +75,16 @@ class Task {
 	}
 
 	addVolunteer() {
-		showLoader("Adding Volunteer");
+		// showLoader("Adding Volunteer");
 		const _this = this;
 		return _this.contract.addVolunteer()
-			.then(_this.refreshVolunteers)
-			.then(hideLoader);
+			.then(_this.refreshVolunteers);
 	}
 
 	// TODO : Implement all solidity functions
 
 	assignTask(address) {
-		return this.contract.assignTask(address);
+		return this.contract.assignTask(address).then(this.refreshTaskInfo);
 	}
 
 	completedTask() {

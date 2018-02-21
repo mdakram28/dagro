@@ -1,19 +1,34 @@
 <div class="row">
 
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" ng-app="app">
-			<ul class="dapp-account-list">
-					<!-- Clickable accounts use <button> -->
-						<br>
-						<br>
-				<!--	<li ng-repeat="acc in accounts">
-						<button>
-							<a class="dapp-identicon dapp-small" style="background-image: url(identiconimage.png)" ng-click=""></a>
-							<h3>Account</h3>
-							<span><b>{{acc}}</b></span>
-						</button>         
-					</li>
-			
-				</ul>-->
+		<table class="accounts-table">
+			<tr ng-repeat="acc in _.accounts" ng-click="_.setActiveAccount(acc)">
+				<td>
+					<img ng-src="data:image/JPEG;base64,{{acc.identicon}}">
+				</td>
+				<td>
+					<b ng-if="acc.member">{{acc.member.name}}<br/></b>
+					{{acc.address}}
+				</td>
+				<td>
+					<figure ng-if="acc.selected" class="icon-check"></figure>
+				</td>
+			</tr>
+		</table>
+		<!-- <ul class="dapp-account-list">
+			<br>
+			<br>
+			<li ng-repeat="acc in _.accounts" ng-click="_.setActiveAccount(acc)">
+				<button style="padding-left:65px">
+					<img class="dapp-identicon dapp-small" ng-src="data:image/JPEG;base64,{{acc.identicon}}">
+					<h3>Account</h3>
+					<span>
+						<b>{{acc.address}}</b>
+					</span>
+				</button>
+			</li>
+
+		</ul> -->
 
 	</div>
 

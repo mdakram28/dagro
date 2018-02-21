@@ -229,7 +229,7 @@ class Community {
 	}
 
 	isOwner() {
-		return account == this.info.owner;
+		return window.account == this.info.owner;
 	}
 
 	createTask(name, description, reward) {

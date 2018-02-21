@@ -34,9 +34,9 @@ contract Task {
         _;
     }
     
-    function Task(Community _c, string _name, string _description) public {
+    function Task(Community _c, string _name, string _description, address _owner) public {
         c = _c;
-        owner = msg.sender;
+        owner = _owner;
         createdAt = now;
         name = _name;
         description = _description;

@@ -3,30 +3,33 @@
 	<div class="col-lg-3">
 
 		<h1 class="my-4">Task Dashboard</h1>
-		<a href="#" class="btn btn-primary col-sm-12" style="color: white" data-toggle="modal" data-target="#TaskModal" >Post a task </a>
+		<a href="#" class="btn btn-primary col-sm-12" style="color: white" data-toggle="modal" data-target="#TaskModal">Post a task </a>
 		<hr/>
-		
+
+		<h1 class="my-4">Task name</h1>
+		<div class="btn-group-vertical" style="width: 100%">
+			<a href="#" style="color: white; width: 100%" class="btn btn-primary" ng-repeat="task in _.community.tasks" ng-click="_.openTask(task)">{{task.info.name}}</a>
+			
+		</div>
 	</div>
-	<!-- Page Content -->
-    <div class="container">
-
-		<div class="row">
-  
-		  <div class="col-lg-3">
-			<h1 class="my-4">Task name</h1>
-			<div class="list-group">
-			  <a href="#" class="btn btn-primary" ng-repeat="task in _.community.tasks" ng-click="_.openTask(task)">{{task.info.name}}</a>
-			 
-			</div>
-		  </div>
+	<!-- Page Content
+	<div class="container">
 		
-
+		<div class="row">
+			
+			<div class="col-lg-3">
+			</div>
+		</div>
+	</div> -->
+	
 	<div class="col-lg-9">
 
+
 		<div class="card mt-4">
-			<div class="card-img-top img-fluid" style="display: block; height: 200px; background-image: url('/img/helloagro.jpg'); background-size: cover;" alt="Agriculture"></div>
+			<div class="card-img-top img-fluid" style="display: block; height: 200px; background-image: url('/img/helloagro.jpg'); background-size: cover;"
+			 alt="Agriculture"></div>
 			<div class="card-body">
-				
+
 			</div>
 		</div>
 		<!-- /.card -->
@@ -37,8 +40,8 @@
 				Task Details
 			</div>
 			<div class="card-body">
-				<p>{{tasks.info.description}}</p>
-				<p>{{tasks.info.value}}</p>
+				<p>{{_.task.info.description}}</p>
+				<p><b>REWARD : </b>{{_.task.info.value}}</p>
 				<button class="btn btn-primary" ng-click="_.addVolunteer(_.task)">
 					Volunteer for task
 				</button>

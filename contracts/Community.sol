@@ -177,7 +177,7 @@ contract Community {
     
     function newTask(string name, string description, uint256 reward) public onlyOwner {
         // require((valuation()/10) > reward);
-		address task = new Task(this, name, description);
+		address task = new Task(this, name, description, owner);
         tasksList.push(task);
 		tasksCount++;
         if(!task.send(reward)){

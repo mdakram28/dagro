@@ -15,7 +15,7 @@ export default class TaskController {
 		Community.afterLoad(community => {
 			this.community = community;
 			this.task = this.community.tasks[0];
-			this.scope.$apply();
+			try{this.scope.$apply();}catch(err){}
 			console.log("Community updated");
 		});
 	}
@@ -34,8 +34,18 @@ export default class TaskController {
 		taskchild.verify().then(this.task.refreshTaskInfo).then(this.scope.$apply);
 	}
 
+	assignTask(task,member) {
+		showLoader("Assigning volunteer to task.");
+		task.assignTask(member.address).catch(err => {
+			showError("Unable to assign volunteer : "+err.message);
+		}).then(hideLoader);
+	}
+
 	addVolunteer(task) {
-		task.addVolunteer().then(this.scope.$apply);
+		showLoader("Adding volunteer");
+		task.addVolunteer().then(this.scope.$apply).catch(err => {
+			showError("Unable to add volunteer");
+		}).then(hideLoader);
 	}
 
 	openTask(task) {
