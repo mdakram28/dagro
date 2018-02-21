@@ -43,4 +43,6 @@ export default class TaskController {
 		this.task = task;
 		this.scope.$apply();
 	}
+
+	
 }

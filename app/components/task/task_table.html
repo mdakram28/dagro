@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive" id="volunteertable">
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -6,6 +6,7 @@
 				<th></th>
 				<th>Volunteer</th>
 				<th>Assign</th>
+				<th>Verify</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,6 +19,11 @@
 				<td ng-if="task.info.status == 'CREATED'">
 					<button type="button" class="btn btn-success" ng-click="_.assignTask(_.task,member)">
 						Assign
+					</button>
+				</td>
+				<td ng-if="task.info.status == 'ASSIGNED'">
+					<button type="button" class="btn btn-success" ng-click="_.completedTask(_.task)">
+					Verify
 					</button>
 				</td>
 				
