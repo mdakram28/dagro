@@ -73,10 +73,11 @@ contract Task {
         assignedVolunteer = volunteer;
     }
     
-    function completedTask() public onlyOwner {
+    function completedTask(address volunteer) public onlyOwner {
         require(status == Status.ASSIGNED);
         require(assignedVolunteer == msg.sender);
         status = Status.COMPLETED;
+        suicide(assignedVolunteer);
     }
     
     function verifyTask(bool verified) public onlyOwner {

@@ -45,7 +45,7 @@
 				<button class="btn btn-primary" ng-click="_.addVolunteer(_.task)">
 					Volunteer for task
 				</button>
-				<button class="btn btn-primary" ng-click="_.completeTask(_.task)"  ng-if="_.community.isOwner()">
+				<button class="btn btn-primary" ng-click="_.completeTask(_.task,member)"  ng-if="_.community.isOwner()">
 					Mark as complete
 					<i class="far fa-check-circle" ng-if="_.task.info.status == 'COMPLETED'" style="font-size: 30px; color: #00695C"></i>
 				</button>

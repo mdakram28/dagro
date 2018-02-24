@@ -35,12 +35,12 @@ export default class TaskController {
 	}
 
 	assignTask(task,member) {
-		
+		task.assignTask(member.address).then(this.task.refreshTaskInfo).then(this.scope.$apply);
 	}
 
-	completeTask(task)
+	completedTask(task,member)
 	{
-		task.completedTask();
+		this.task.completedTask(member.address).then(this.refreshTaskInfo).then(this.scope.$apply);
 	
 	
 	}
