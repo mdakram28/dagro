@@ -87,8 +87,8 @@ class Task {
 		return this.contract.assignTask(address).then(this.refreshTaskInfo);
 	}
 
-	completedTask(address) {
-		return this.contract.completedTask(address).then(this.refreshTaskInfo);
+	completedTask() {
+		return this.contract.completedTask().then(this.refreshTaskInfo);
 	}
 
 	cancelTask() {
