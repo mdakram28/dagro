@@ -35,10 +35,14 @@ export default class TaskController {
 	}
 
 	assignTask(task,member) {
-		showLoader("Assigning volunteer to task.");
-		task.assignTask(member.address).catch(err => {
-			showError("Unable to assign volunteer : "+err.message);
-		}).then(hideLoader);
+		
+	}
+
+	completeTask(task)
+	{
+		task.completedTask();
+	
+	
 	}
 
 	addVolunteer(task) {
