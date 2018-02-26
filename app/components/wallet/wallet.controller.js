@@ -16,6 +16,7 @@ export default class {
 		this.depositAmount = 0;
 		this.balance = 0;
 		this.accounts = [];
+		this.scope = $scope;
 		
 		Community.afterLoad(community => {
 			this.community = community;
@@ -26,23 +27,27 @@ export default class {
 			for(let i in this.accounts) {
 				this.accounts[i].member = this.community.getMemberByAddress(this.accounts[i].address);
 			}
-			this.scope.$apply();
+			try{this.scope.$apply();}catch(err){}
 			console.log(this.accounts);
 		});
-		this.scope = $scope;
 	}
 
 	setActiveAccount(account) {
+		showLoader("Changing account ... ");
 		localStorage.setItem("account", account.address);
 		window.location.reload();
 	}
 
 	deposit() {
-		this.community.deposit(this.depositAmount).then(this.scope.$apply);
+		showLoader("Adding amount to wallet");
+		this.community.deposit(this.depositAmount).then(this.scope.$apply)
+		.catch(catchError("Failed to deposit. Please make sure you have enough balance.")).then(hideLoader);
 	}
 
 	withdraw() {
-		this.community.withdraw(this.withdrawAmount).then(this.scope.$apply);
+		showLoader("Withdrawing balance to wallet");
+		this.community.withdraw(this.withdrawAmount).then(this.scope.$apply)
+		.catch(catchError("Failed to withdraw.")).then(hideLoader);
 	}
 	
 }

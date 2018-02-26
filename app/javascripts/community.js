@@ -97,11 +97,9 @@ class Community {
 					}
 					Community.loaded = true;
 					localStorage.setItem("communityAddress", address);
-					hideLoader();
 				});
 
 		} else if (arguments.length == 5) {
-			showLoader("Creating contract");
 			CommunityContract.new(args).then(function (instance) {
 				_this.contract = instance;
 				_this.address = _this.contract.address;
@@ -115,7 +113,6 @@ class Community {
 							Community.toExec[f](_this);
 						}
 						localStorage.setItem("communityAddress", _this.address);
-						hideLoader();
 					});
 			});
 		} else {
@@ -234,30 +231,21 @@ class Community {
 
 	createTask(name, description, reward) {
 		const _this = this;
-		showLoader("Posting new task ... ");
 		return _this.contract.newTask(name, description, reward)
 			.then(_this.refreshTasksList)
 			.then(hideLoader);
 	}
 
 	deposit(amount) {
-		showLoader("Sending transaction ...")
 		return this.contract.deposit({
 			value: amount
 		})
-			.then(this.refreshMyInfo)
-			.then(() => {
-				hideLoader();
-			});
+			.then(this.refreshMyInfo);
 	}
 
 	withdraw(amount) {
-		showLoader("Sending transaction ...")
 		return this.contract.withdraw(amount)
-			.then(this.refreshMyInfo)
-			.then(() => {
-				hideLoader();
-			});
+			.then(this.refreshMyInfo);
 	}
 
 	valuation() {
@@ -269,31 +257,19 @@ class Community {
 	}
 
 	clearPendingBuys() {
-		showLoader("Sending pending transaction ...")
 		return this.contract.clearPendingBuy()
-			.then(this.refreshMyInfo)
-			.then(() => {
-				hideLoader();
-			});
+			.then(this.refreshMyInfo);
 	}
 
 	buyShares(sharesCount) {
-		showLoader("Buying Shares ...")
 		return this.contract.buyShares(sharesCount, {
 			value: (this.valuation() * sharesCount) / this.info.totalShares
 		})
-			.then(this.refreshAll)
-			.then(() => {
-				hideLoader();
-			});
+			.then(this.refreshAll);
 	}
 	sellShares(to, sharesCount) {
-		showLoader("Selling Shares ...")
 		return this.contract.sellShares(to, sharesCount)
-			.then(this.refreshAll)
-			.then(() => {
-				hideLoader();
-			});
+			.then(this.refreshAll);
 	}
 
 	formatAmount(amount) {
