@@ -1,0 +1,85 @@
+<div class="row">
+
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" ng-app="app">
+		<table class="accounts-table">
+			<tr ng-repeat="acc in _.accounts" ng-click="_.setActiveAccount(acc)">
+				<td>
+					<img ng-src="data:image/JPEG;base64,{{acc.identicon}}">
+				</td>
+				<td>
+					<b ng-if="acc.member">{{acc.member.name}}<br/></b>
+					{{acc.address}}
+				</td>
+				<td>
+					<figure ng-if="acc.selected" class="icon-check"></figure>
+				</td>
+			</tr>
+		</table>
+		<!-- <ul class="dapp-account-list">
+			<br>
+			<br>
+			<li ng-repeat="acc in _.accounts" ng-click="_.setActiveAccount(acc)">
+				<button style="padding-left:65px">
+					<img class="dapp-identicon dapp-small" ng-src="data:image/JPEG;base64,{{acc.identicon}}">
+					<h3>Account</h3>
+					<span>
+						<b>{{acc.address}}</b>
+					</span>
+				</button>
+			</li>
+
+		</ul> -->
+
+	</div>
+
+	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+		<div class="table-responsive">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Balance</th>
+						<td>{{_.community.formatAmount(_.balance)}}</td>
+					</tr>
+					<tr>
+						<th>Wallet Balance</th>
+						<td>{{_.community.formatAmount(_.community.myInfo.deposit)}}</td>
+					</tr>
+					<tr>
+						<td>
+							<button type="button" ng-click="_.deposit()" class="btn btn-primary col-sm-11">
+								Deposit
+							</button>
+						</td>
+						<td>
+							<input type="number" name="deposit" ng-model="_.depositAmount" class="form-control" required>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<button type="button" ng-click="_.withdraw()" class="btn btn-primary col-sm-11">
+								Withdraw
+							</button>
+						</td>
+						<td>
+							<input type="number" name="withdraw" ng-model="_.withdrawAmount" class="form-control" required>
+						</td>
+					</tr>
+
+
+					<tr>
+						<td>
+							<button type="button" ng-click="_.withdrawAll()" class="btn btn-primary col-sm-11">
+								Withdraw All
+							</button>
+						</td>
+						<td>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>

@@ -2,6 +2,8 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
+console.log(JSON.stringify(process.env.TESTRPC_URL || 'http://127.0.0.1:8545'));
+
 module.exports = {
 	entry: './app/javascripts/app.js',
 	output: {
@@ -9,6 +11,9 @@ module.exports = {
 		filename: 'app.js'
 	},
 	plugins: [
+		new webpack.DefinePlugin({
+			'process.env.TESTRPC_URL': JSON.stringify(process.env.TESTRPC_URL || 'http://127.0.0.1:8545')
+		}),
 		// Copy our app's index.html to the build folder.
 		new CopyWebpackPlugin([
 			// { from: './app/index.html', to: "index.html" },

@@ -1,0 +1,199 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-if="_.community==undefined">
+		<center>
+			<h2>UH-OH Looks like you are not a part of a community yet!</h2>
+		</center>
+
+		<div class="row">
+
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="border-right:1px solid #ccc;">
+				<form ng-submit="_.createNewCommunity()">
+
+					<!-- string _communityName, uint _totalShares, uint _unownedShares, uint256 _assetValue, string name -->
+
+					<div class="form-group">
+						<label>Community Name</label>
+						<input type="text" ng-model="_.new.communityName" class="form-control" placeholder="Enter community name" required>
+					</div>
+
+					<div class="form-group">
+						<label>Your Name</label>
+						<input type="text" ng-model="_.new.name" class="form-control" placeholder="Enter your name" required>
+					</div>
+
+					<div class="form-group">
+						<label>Total Shares</label>
+						<input type="number" ng-model="_.new.totalShares" class="form-control" placeholder="Enter Total Shares" required>
+					</div>
+
+					<div class="form-group">
+						<label>Unowned Shares</label>
+						<input type="number" ng-model="_.new.unownedShares" class="form-control" placeholder="Enter Unowned shares " required>
+					</div>
+
+					<div class="form-group">
+						<label>Asset Value</label>
+						<input type="number" ng-model="_.new.assetValue" class="form-control" placeholder="Enter Asset Value" required>
+					</div>
+
+					<button type="submit" class="btn btn-primary">
+						START NEW COMMUNITY
+					</button>
+				</form>
+			</div>
+
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<form ng-submit="_.joinCommunity()">
+					<div class="form-group">
+						<label>Join Community</label>
+						<input type="text" ng-model="_.commAddr" class="form-control" placeholder="Enter Community Address" required>
+					</div>
+
+					<button type="submit" class="btn btn-success">
+						Join!
+					</button>
+					<br>
+					<br>
+					<br>
+				</form>
+			</div>
+
+		</div>
+
+
+
+	</div>
+
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-if="_.community!=undefined">
+		<div class="row">
+
+			<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+			</div>
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+				<button type="button" class="btn btn-danger col-sm-12" ng-click="_.logout()">LOGOUT</button>
+			</div>
+
+		</div>
+
+		<div class="row">
+
+
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="border-right:1px solid #ccc;">
+
+				<div class="table-responsive">
+					<table class="table">
+						<tbody>
+							<tr>
+								<th>Community Name</th>
+								<td>{{_.community.info.communityName}}</td>
+							</tr>
+
+							<tr>
+								<th>Community Address</th>
+								<td>{{_.community.address}}</td>
+							</tr>
+
+							<tr>
+								<th>Community Balance</th>
+								<td>{{_.communityBalance}}</td>
+							</tr>
+
+							<tr>
+								<th>Total Asset Value</th>
+								<td>{{_.community.formatAmount(_.community.info.assetValue)}}</td>
+							</tr>
+
+							<tr>
+								<th>Community Owner</th>
+								<td>{{_.community.info.owner}}</td>
+							</tr>
+
+							<tr>
+								<th>Community Deposits</th>
+								<td>{{_.community.formatAmount(_.community.info.totalDeposits)}}</td>
+							</tr>
+
+							<tr>
+								<th>Gross Shares</th>
+								<td>{{_.community.info.totalShares}}</td>
+							</tr>
+
+							<tr>
+								<th>Unowned Shares</th>
+								<td>{{_.community.info.unownedShares}}</td>
+							</tr>
+
+							<tr>
+								<th>Total Valuation</th>
+								<td>{{_.community.formatAmount(_.community.valuation())}}</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+				<div class="table-responsive">
+					<!-- address: res[0],
+						name: res[1],
+						sharesOwned: res[2].toString(),
+						dateAdded: res[3].toString(),
+						verified: res[4].toString(),
+						deposit: res[5].toString(),
+						pendingBuy: res[6].toString() -->
+					<table class="table">
+						<tbody>
+							<tr>
+								<th>Name</th>
+								<td>{{_.community.myInfo.name}}</td>
+							</tr>
+							<tr>
+								<th>Address</th>
+								<td>{{_.community.myInfo.address}}</td>
+							</tr>
+							<tr>
+								<th>Shares Owned</th>
+								<td>{{_.community.myInfo.sharesOwned}}</td>
+							</tr>
+							<tr>
+								<th>Date Joined</th>
+								<td>{{_.community.myInfo.dateAdded}}</td>
+							</tr>
+							<tr>
+								<th>Verified status</th>
+								<td>{{_.community.myInfo.verified}}</td>
+							</tr>
+							<tr>
+								<th>Wallet deposit</th>
+								<td>{{_.community.formatAmount(_.community.myInfo.deposit)}}</td>
+							</tr>
+							<tr>
+								<th>Pending Share Buys</th>
+								<td>{{_.community.myInfo.pendingBuy}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+</div>
+
+
+<div class="row">
+	
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		${require("./community_table.html")}
+	</div>
+	
+</div>

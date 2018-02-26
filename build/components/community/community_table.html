@@ -1,0 +1,35 @@
+<div class="table-responsive">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th></th>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Verified</th>
+				<th>Shares Owned</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="member in _.community.members">
+				<td>{{$index}}</td>
+				<td>
+					<img class="img-circle" ng-src="data:image/JPEG;base64,{{member.identicon}}">
+				</td>
+				<td>{{member.name}}</td>
+				<td>{{member.address}}</td>
+				<td align="center">
+					<i ng-if="member.verified" class="far fa-check-circle" style="font-size: 20px; color: #00695C"></i>
+				</td>
+				<td ng-if="!member.verified && _.community.isOwner()">
+					<button type="button" class="btn btn-success" ng-click="_.verify(member)">
+						Verify
+					</button>
+				</td>
+				<td>{{member.sharesOwned}}</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
