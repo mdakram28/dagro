@@ -27,36 +27,38 @@ export default class TaskController {
 	postNewTask() {
 		$("#TaskModal").modal("hide");
 		console.log(this.newTask);
-		this.community.createTask(this.newTask.name, this.newTask.description, this.newTask.value);
+		showLoader("Posting new task");
+		this.community.createTask(this.newTask.name, this.newTask.description, this.newTask.value)
+		.catch(catchError("Failed to create task request. Make sure community has sufficient balance")).then(hideLoader);
 	}
 
 	verifyNewTask(taskchild) {
-		taskchild.verify().then(this.task.refreshTaskInfo).then(this.scope.$apply);
+		showLoader("Verifying task");
+		taskchild.verify().then(this.task.refreshTaskInfo).then(this.scope.$apply)
+		.catch(catchError("Failed to verify task.")).then(hideLoader);
 	}
 
 	assignTask(task,member) {
-		task.assignTask(member.address).then(this.task.refreshTaskInfo).then(this.scope.$apply);
+		showLoader("Assigning task to "+member.name);
+		task.assignTask(member.address).then(this.task.refreshTaskInfo).then(this.scope.$apply)
+		.catch(catchError("Failed to assign task.")).then(hideLoader);
 	}
 
 	completeTask(task)
 	{
-		task.completedTask().then(this.scope.$apply);
-	
-	
+		showLoader("Trying to set task as completed");
+		task.completedTask().then(this.scope.$apply)
+		.catch(catchError("Failed to complete task.")).then(hideLoader);;
 	}
 
 	addVolunteer(task) {
 		showLoader("Adding volunteer");
-		task.addVolunteer().then(this.scope.$apply).catch(err => {
-			showError("Unable to add volunteer");
-		}).then(hideLoader);
+		task.addVolunteer().then(this.scope.$apply)
+		.catch(catchError("Failed to add volunteer")).then(hideLoader);
 	}
 
 	openTask(task) {
-		
 		this.task = task;
 		this.scope.$apply();
 	}
-
-	
 }

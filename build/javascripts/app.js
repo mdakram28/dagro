@@ -16,6 +16,11 @@ import routing from '../components/routes.js';
 const app = angular.module("app", [uirouter]);
 app
 	.config(routing)
+	.controller("navigationController", ["$scope", "$location", function ($scope, $location) {
+		$scope.getClass = function (path) {
+			return ($location.path().substr(0, path.length) === path) ? 'active' : '';
+		}
+	}])
 
 
 import { default as Web3 } from 'web3';
@@ -32,23 +37,33 @@ window.hideLoader = function () {
 	$("#loadingMessage").html("LOADING");
 }
 
+
 window.showError = function (message, permanent) {
 	var $target = $('<div class="error-message alert alert-danger"><strong>Error!</strong> ' + message + '</div>');
 	$("#main").prepend($target);
 	$target.hide();
 	$target.show('slow');
-	if(!permanent) {
+	if (!permanent) {
 		setTimeout(function () {
 			$target.hide('slow', function () { $target.remove(); })
 		}, 5000)
 	}
 }
 
+window.catchError = function (message, permanent) {
+	return function (err) {
+		window.showError(message, permanent);
+	}
+}
+
 
 window.web3 = new Web3(new Web3.providers.HttpProvider(process.env.TESTRPC_URL));
 $(function () {
-	console.log("Default account : " + localStorage.getItem("account"));
-	web3.eth.defaultAccount = localStorage.getItem("account") || web3.eth.accounts[0];
+	var localAccount = localStorage.getItem("account");
+	if (web3.eth.accounts.indexOf(localAccount) == -1) {
+		localAccount = undefined;
+	}
+	web3.eth.defaultAccount = localAccount || web3.eth.accounts[0];
 	window.account = web3.eth.defaultAccount;
 
 	Community.injectProvider(web3);
@@ -71,11 +86,11 @@ window.verifyLoaded = function () {
 }
 
 Community.afterLoad(community => {
-	setInterval(function() {
-		if(window.location.hash == "#!/community" || window.location.hash == "#!/wallet")return;
+	setInterval(function () {
+		if (window.location.hash == "#!/community" || window.location.hash == "#!/wallet") return;
 		var member = community.getMemberByAddress(account);
-		if(!member) window.location.href = "#!/community";
-		if(!member.verified) {
+		if (!member) window.location.href = "#!/community";
+		if (!member.verified) {
 			window.location.href = "#!/community";
 			showError("PLEASE GET YOUR ACCOUNT VERIFIED FROM THE ADMIN.", true);
 		}

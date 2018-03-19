@@ -25,14 +25,20 @@ export default class {
 	}
 
 	buyShares() {
-		this.community.buyShares(this.buySharesCount).then(this.refresh);
+		showLoader("Buying shares");
+		this.community.buyShares(this.buySharesCount).then(this.refresh)
+		.catch(catchError("Failed to buy shares.")).then(hideLoader);
 	}
 
 	clearPendingBuys() {
-		this.community.clearPendingBuys().then(this.refresh);
+		showLoader("Clearing pending buy requests.");
+		this.community.clearPendingBuys().then(this.refresh)
+		.catch(catchError("Failed to clear pending buy requests.")).then(hideLoader);
 	}
 
 	sellShares(member) {
-		member.sellShare(member.pendingBuy).then(this.refresh);
+		showLoade("Trying to sell shares");
+		member.sellShare(member.pendingBuy).then(this.refresh)
+		.catch(catchError("Failed to sell shares.")).then(hideLoader);
 	}
 }

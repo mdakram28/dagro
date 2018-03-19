@@ -15,6 +15,7 @@ export default class {
 		this.scope = $scope;
 
 		Community.afterLoad( community => {
+			hideLoader();
 			window.community = community;
 			this.community = community;
 			this.communityBalance = this.community.formatAmount(web3.eth.getBalance(this.community.address));
@@ -23,6 +24,7 @@ export default class {
 	}
 
 	createNewCommunity() {
+		showLoader("Creating community");
 		const _this = this;
 		new Community(
 			this.new.communityName,
@@ -34,16 +36,20 @@ export default class {
 	}
 
 	joinCommunity() {
+		showLoader("Joining community");
 		new Community(this.commAddr);
 	}
 
 	logout() {
+		showLoader("Logging out");
 		localStorage.removeItem("communityAddress");
 		window.location.reload();
 	}
 
 	verify(member) {
-		member.verify().then(this.community.refreshAll).then(this.scope.$apply);
+		showLoader("Verifying");
+		member.verify().then(this.community.refreshAll).then(this.scope.$apply)
+		.catch(catchError("Failed to verify.")).then(hideLoader);
 	}
 }
 
